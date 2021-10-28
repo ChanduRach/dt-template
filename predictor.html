@@ -283,8 +283,10 @@ body {
             <div class="container">
               <% COLS.forEach(function(col) { %>
               <div class="form-group row">
-                <label for="<%= col.name %>" class="col-md-6"><%= col.name %></label>
+                <label for="<%= col.name %>" class="col-sm-6 col-form-label text-left"><%= col.name %></label>
+                  <div class="col-sm-6">
                 <input class="form-control col-md-6" type="<%= col.type %>" name="<%= col.name %>" value="<%=row[col.name]%>">
+                  </div>
               </div>
               <% }) %>
             </div>
