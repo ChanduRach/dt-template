@@ -1,0 +1,126 @@
+ /* @import url("ui/bootstraptheme.css?danger=%239f0d1b&dark=%23304268&primary=%23073A91&body-bg=%23F1F6FC&success=%23036819&warning=%23d6a20a&font-family-base=segoe-ui&headings-font-family=roboto&font-size-base=1.2rem&navbar-dark-color=rgba(255,255,255,0.8)&navbar-dark-hover-color=%23fff"); */
+ /* @import url("ui/bootstraptheme.css?primary=%233F327D&secondary=%23342771&info=%232A2152&light=%23B8BAC8&color1=%232A2152&color2=%23575179&color3=%23736C9A&color4=%23E4E7EB&color5=%23524A78&color6=%23A97EF7&color7=%23EEEBF0&color8=%23E1DCEA&color9=%23544367&color10=%23A196D2&color11=%23FF95A1&color12=%2300A2BA&color13=%23fff&color14=%23F9FAFA&color15=%23804EDE&color16=rgba(0%2C162%2C186%2C0.15)&color17=%23BA2400&color18=rgba(135%2C26%2C0%2C0.15)&color19=%23DADCE0&color20=%2391D887&color21=%232A2A2A&color22=%233F327D&color23=%230D72E8&color24=%23808EA4&color25=%231B1233&color26=%23333333&color27=%239690B9&color28=%2391D887&color29=%2359A600&color30=%23FBF7FF&line-height-3=16px&body-color=%23000&body-bg=white&font-family-base=Work Sans"); */
+
+ /* custom styles for app: process-monitor */
+ body{
+    background-color: #f1f6fc;
+   }
+  
+   .home .navbar {
+     padding-top: 2em;
+     padding-bottom: 2em;
+   }
+  
+   .navbar-dark .navbar-nav .show>.nav-link, .navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .nav-link.active {
+     border-bottom: 2px solid var(--white);
+   }
+  
+   .home {
+     background-image: url('img/wave.svg');
+     background-repeat: no-repeat;
+     background-position: top center;
+   }
+  
+   /* Make the tooltip a bit smaller than the base font size. Since we're using 1.2rem base font size, this inverts it. */
+   .tooltip {
+     font-size: 0.833333333rem;
+   }
+  
+   /* Used to create a white-ish background on the home page sections */
+   .bg-lighter {
+     background-color: rgba(255, 255, 255, 0.5) !important;
+   }
+  
+   /* We want the mobile page to run scripts from the footer, but not show the footer text */
+   .mobile footer {
+     display: none;
+   }
+  
+   .mobile main section {
+     margin-top: 15vh;
+   }
+  
+   @media (min-width:768px) {
+     .mobile main {
+       background-image: url('img/iphone.svg');
+       background-position: top center;
+       background-repeat: no-repeat;
+       background-size: 22rem;
+       min-height: 45rem;
+     }
+     .mobile main section {
+       margin-top: 12rem;
+     }
+   }
+  
+   /* Bootstrap upgrade required to avoid this */
+   .custom-select {
+     -moz-appearance: none;
+     -webkit-appearance: none;
+   }
+  
+   .result.Good { background-color: #c9fbcc; }
+   .result.Bad { background-color: #fbe1c9; }
+  
+  
+   .controls { height: 50px; }
+   .controls>div { width: 10.3%; position: absolute; }
+   .controls input[type="range"] { width: 100%; }
+  
+   .features {
+     display: grid;
+     grid-gap: 1rem;
+     counter-reset: features;
+   }
+  
+   @media (min-width: 768px) {
+     .features { grid-template-columns: 0.5fr 0.5fr; }
+   }
+  
+   .features .feature {
+     counter-increment: features;
+     background-color: var(--light);
+     display: flex;
+     margin: 1rem 0;
+     box-shadow: 1px 1px 3px rgba(0,0,0,.2);
+   }
+   .features .feature p {
+     margin: 0.5rem 1rem;
+     text-align: left;
+   }
+  
+   .features .feature::before {
+     content: counter(features);
+     font-size: 3rem;
+     font-weight: bold;
+     width: 5rem;
+     text-align: center;
+     background-color: var(--info);
+     color: var(--light);
+     flex-shrink: 0;
+   }
+  
+   .features a {
+     text-decoration: underline;
+   }
+  
+   #navbarSupportedContent{
+    justify-content: flex-end;
+    font-size: 1.2em;
+   }
+   .navbar-dark .navbar-nav .nav-link{
+     color: #fff !important;
+   }
+  
+   .container a span{
+     font-size: 20px;
+   }
+  
+   footer{
+     margin: 2em 0em;
+   }
+  
+  .form-group{
+    margin-bottom: 1rem;
+  }
+  
