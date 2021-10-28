@@ -1,0 +1,41 @@
+url:
+  project4-home:
+    pattern: /$YAMLURL/
+    handler: FileHandler
+    kwargs:
+      path: $YAMLPATH/index.html
+  3c87f5f5-efcd-4f24-ae9d-79ef0888dccb:
+    handler: MLHandler
+    kwargs:
+      config_dir: $YAMLPATH
+      data:
+        url: $YAMLPATH/uploads/data_input.csv
+      model:
+        cats:
+        - Material A
+        - Material B
+        - Solvent Amt
+        - Catalyzer Type
+        class: LogisticRegression
+        config_dir: $YAMLPATH
+        deduplicate: true
+        dropna: true
+        exclude:
+        - Batch Number
+        nums:
+        - Avg Dryer Cycle Time (min)
+        - Avg Dryer Speed
+        - Avg Dryer Temperature
+        - Avg Crushing speed
+        - Avg Crushing time (min)
+        - Avg Reactor Temperature
+        - Avg Reaction Time (min)
+        path: $YAMLPATH/model.pkl
+        target_col: Outcome
+      template: $YAMLPATH/predictor.html
+      xsrf_cookies: false
+    pattern: /$YAMLURL/classify
+import:
+  ui:
+    path: $GRAMEXAPPS/ui/gramex.yaml
+    YAMLURL: $YAMLURL/ui/
