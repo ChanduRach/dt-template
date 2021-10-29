@@ -123,4 +123,6 @@
   .form-group{
     margin-bottom: 1rem;
   }
-  
+  block-container {
+    left: 50px !important;
+  }
