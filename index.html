@@ -4,21 +4,105 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>project4</title>
+  <title>Process Monitor | Gramener</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="ui/theme/bootstrap5.scss">
+  <meta name="description" content="Use machine learning to predict in real-time when any process (e.g. batch of tables) will have poor quality">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-42126862-1"></script>
+  <link rel="stylesheet" href="process-monitor.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+
+
+  </style>
 </head>
 
-<body>
-  <div class="container my-5">
-    <div class="jumbotron text-center">
-      <h1 class="display-4">Welcome to Gramex</h1>
-      <a class="btn btn-primary btn-lg my-5" href="https://gramener.com/gramex/guide/" role="button">Learn more</a>
-    </div>
-  </div>
+<body class="home">
+  <nav class="navbar navbar-expand-lg navbar-dark text-white {{ 'bg-dark sm1' if plant else '' }}">
+      <div class="container">
+      <a class="text-white btn" href="index.html" data-toggle="tooltip" title="Visit the Process Monitor home page">
+        <!-- Replace with your logo. Just specify height, not width. -->
+        <img height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQAAAADJe6U1AAAABGdBTUEAALGPC/xhBQAAAAJ0Uk5TAAB2k804AAAANUlEQVR42mNgwAX4/x8AkvZgsh5M/geTP8CyH0ggP1BKMoLIH8wfwG54AHbPA7jb+P9jcz0AKpcxBQbNJ8sAAAAASUVORK5CYII=" alt="Logo">
+        <span>Process Monitor</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navbar left -->
+        <ul class="navbar-nav mr-auto pl-5 text-uppercase">
+        </ul>
+        <!-- Navbar middle -->
+        <div class="navbar-nav mr-auto"></div>
+        <!-- Navbar right -->
+        <div class="navbar-nav pages">
+          <!-- <a href="#" class="nav-link" data-toggle="tooltip" title="Open on your mobile to alert the operator when quality drops">Mobile</a> -->
+          <a href="monitor.html" class="nav-link" data-toggle="tooltip" title="Display on the shop floor monitor for the operator to keep an eye on">Monitor</a>
+          <a href="/classify" class="nav-link" data-toggle="tooltip" title="For analysts to predict the quality of a batch, without running the tet">Predictor</a>
+          <!-- <a href="#" class="nav-link" data-toggle="tooltip" title="For analysts to explore what can be done to improve process quality">Simulator</a> -->
 
-  <!-- Add commonly used libraries from https://learn.gramener.com/guide/uicomponents/ -->
-  <script src="ui/bootstrap5/dist/js/bootstrap.bundle.min.js"></script>
+          <!-- <a href="code" class="nav-link" data-toggle="tooltip" title="Explore the Gramex features and learn how to code and build this app">Code</a> -->
+          <!-- <a href="help" class="nav-link" data-toggle="tooltip" title="Understand how process works, and how to use the application">Help</a> -->
+          <!-- <a href="admin/" class="nav-link" data-toggle="tooltip" title="Administer the app.">Admin</a> -->
+          <!-- <a href="logout/" class="nav-link" data-toggle="tooltip" title="Log out of the application.">Logout</a> -->
+        </div>
+      </div>
+      </div>
+  </nav>
+
+  <section class="container py-4 text-center">
+    <h1 class="h4 pb-3 text-light font-weight-bold">Monitor your Organic Synthesis Process</h1>
+    <p class="text-light">Use Machine Learning to alert operators when quality drops</p>
+
+    <row class="row justify-content-center">
+      <column class="col-12 col-lg-4 d-flex">
+        <card class="card shadow my-4 pt-3 align-self-stretch">
+          <i class="card-img-top d-block fa fa-desktop fa-5x py-3 text-dark"></i>
+          <div class="card-body">
+            <h5 class="card-title">Floor <strong>Monitor</strong></h5>
+            <p class="card-text">
+              Display in a large screen on the plant floor. Operators can <strong>see from far</strong> when quality drops.
+            </p>
+            <a href="monitor.html" class="btn btn-primary">Open Monitor</a>
+          </div>
+        </card>
+      </column>
+      <column class="col-12 col-lg-4 d-flex">
+        <card class="card shadow my-4 pt-3 align-self-stretch">
+          <i class="card-img-top d-block fa fa-arrow-circle-right fa-5x py-3 text-dark"></i>
+          <div class="card-body">
+            <h5 class="card-title"><strong>Predict</strong> Quality</h5>
+            <p class="card-text">
+              Find out if a batch will produce a good result or a bad result &mdash; <strong>without running it</strong>.
+            </p>
+            <a href="classify" class="btn btn-primary">Open Predictor</a>
+          </div>
+        </card>
+      </column>
+    </row>
+  </section>
+  <hr>
+
+  <footer class="container-fluid text-secondary sm1 pt-2 mb-5">
+    <row class="row">
+      <column class="col-sm-6 text-center text-sm-left">
+        <p>Built by <a class="font-weight-bold" href="https://gramener.com/">Gramener</a></p>
+
+      </column>
+      <column class="col-sm-6 text-center text-sm-right">
+        <p>Powered by <a class="font-weight-bold" href="https://gramener.com/platform/">Gramex</a></p>
+      </column>
+    </row>
+  </footer>
+
+
+  <script src="//unpkg.com/lodash"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="ui/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="ui/numeral/min/numeral.min.js"></script>
+<script src="ui/g1/dist/g1.min.js"></script>
 </body>
 
 </html>

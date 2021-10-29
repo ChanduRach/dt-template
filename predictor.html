@@ -51,12 +51,15 @@ body {
   fill: #000000;
   transform: translateY(0.5em);
 }
+input:focus-visible {
+  outline: none;
+}
 </style>
 
 <body class="home">
-  <nav class="navbar navbar-expand-lg navbar-dark text-white">
+  <nav class="navbar navbar-expand-lg navbar-dark text-white" style="padding:0.5rem !important">
     <div class="container">
-    <a class="text-white btn" href="process-monitor.html" data-toggle="tooltip" title="Visit the Process Monitor home page">
+    <a class="text-white btn" href="index.html" data-toggle="tooltip" title="Visit the Process Monitor home page">
       <!-- Replace with your logo. Just specify height, not width. -->
       <img height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQAAAADJe6U1AAAABGdBTUEAALGPC/xhBQAAAAJ0Uk5TAAB2k804AAAANUlEQVR42mNgwAX4/x8AkvZgsh5M/geTP8CyH0ggP1BKMoLIH8wfwG54AHbPA7jb+P9jcz0AKpcxBQbNJ8sAAAAASUVORK5CYII=" alt="Logo">
       <span>Process Monitor</span>
@@ -285,7 +288,10 @@ body {
               <div class="form-group row">
                 <label for="<%= col.name %>" class="col-sm-6 col-form-label text-left"><%= col.name %></label>
                   <div class="col-sm-6">
-                <input class="form-control col-md-6" type="<%= col.type %>" name="<%= col.name %>" value="<%=row[col.name]%>">
+                <!-- <input class="form-control col-md-6" type="<%= col.type %>" name="<%= col.name %>" value="<%=row[col.name].toFixed(2)%>"> -->
+                <input type="range" value="<%=row[col.name].toFixed(2)%>" min="0" max="100" step="0.1" oninput="this.nextElementSibling.value = this.value">
+                <!-- <output><%=row[col.name].toFixed(2)%></output> -->
+                <input style="border: none;" readonly type="<%= col.type %>" name="<%= col.name %>" value="<%=row[col.name].toFixed(2)%>">
                   </div>
               </div>
               <% }) %>
@@ -387,6 +393,9 @@ body {
           }
         })
       })
+      window.onload = function(){
+      $('#train').submit();
+        }
       $('#predictform').submit(function(e) {
         e.preventDefault()
         url = g1.url.parse(window.location)

@@ -9,29 +9,25 @@ url:
     kwargs:
       config_dir: $YAMLPATH
       data:
-        url: $YAMLPATH/uploads/data_input.csv
+        url: $YAMLPATH/uploads/Ketrol_Output_modeldf1.csv
       model:
-        cats:
-        - Material A
-        - Material B
-        - Solvent Amt
-        - Catalyzer Type
+        cats: []
         class: LogisticRegression
         config_dir: $YAMLPATH
         deduplicate: true
         dropna: true
-        exclude:
-        - Batch Number
+        exclude: []
         nums:
-        - Avg Dryer Cycle Time (min)
-        - Avg Dryer Speed
-        - Avg Dryer Temperature
-        - Avg Crushing speed
-        - Avg Crushing time (min)
-        - Avg Reactor Temperature
-        - Avg Reaction Time (min)
+        - MainMVKNPV
+        - PnchStiff
+        - PreMVKNPV
+        - TabCylHighMainPV
+        - TabFillDepthPV
+        - Assay
+        - ParSizeASTMesh
+        - PotencyCal
         path: $YAMLPATH/model.pkl
-        target_col: Outcome
+        target_col: Output
       template: $YAMLPATH/predictor.html
       xsrf_cookies: false
     pattern: /$YAMLURL/classify
