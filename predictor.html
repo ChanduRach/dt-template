@@ -387,6 +387,9 @@ body {
           }
         })
       })
+      window.onload = function(){
+      $('#train').submit();
+        }
       $('#predictform').submit(function(e) {
         e.preventDefault()
         url = g1.url.parse(window.location)
