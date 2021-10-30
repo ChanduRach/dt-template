@@ -125,4 +125,8 @@
   }
   block-container {
     left: 50px !important;
+    top: 30px !important;
+  }
+  digital-twin{
+    background-image: url(img/operational-bg.jpg);
   }

@@ -52,10 +52,11 @@
     }
     digital-twin > footer {
       position: absolute;
-      bottom: 0;
+      top: 0;
       display: flex;
       align-items: center;
       width: 100%;
+      margin : 1em 0 !important
     }
 
     digital-twin > footer > input {
@@ -80,10 +81,6 @@
   </style>
   <% if(!data) return %>
   <svg></svg>
-  <main>
-    <slot></slot>
-    <span></span>
-  </main>
   <footer>
     <datalist id="keys">
       <% var isArray = Array.isArray(data) %>
@@ -101,6 +98,11 @@
       <input onchange="uifactory.digitalTwin.scrub(event)" type="range" min="0" max="<%- data.length - 1 %>" value="<%- frame %>" />
     <% } %>
   </footer>
+  <main>
+    <slot></slot>
+    <span></span>
+  </main>
+ 
   <script>
     uifactory.digitalTwin = {
       isHighlighted: false,

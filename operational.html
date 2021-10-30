@@ -1,525 +1,450 @@
 <!doctype html>
 <html lang='en'>
-
 <head>
-    <title>Process Monitor | Gramener</title>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-        content="Use machine learning to predict in real-time when any process (e.g. batch of tables) will have poor quality">
-    <link rel="stylesheet" href="process-monitor.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42126862-1"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-    <script src="https://unpkg.com/lodash@4.17.21/lodash.js"></script>
-    <script src="https://unpkg.com/uifactory@1.22.1/dist/uifactory.min.js"
-        import="grapesjs-components.html, digital-twin-templates.html"></script>
+  <title>Process Monitor | Gramener</title>
+  <meta charset="utf-8"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Use machine learning to predict in real-time when any process (e.g. batch of tables) will have poor quality">
+  
+  <link rel="stylesheet" href="process-monitor.css"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42126862-1"></script><script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script><script src="https://unpkg.com/lodash@4.17.21/lodash.js"></script><script src="https://unpkg.com/uifactory@1.22.1/dist/uifactory.min.js" import="grapesjs-components.html, digital-twin-templates.html"></script>
 </head>
-
-<body style="background-image:url('img/operational-bg.jpg')">
-    <nav id="ix41" class="navbar navbar-expand-lg navbar-dark text-white sm1">
-        <div class="container-fluid"><a href="index.html" data-toggle="tooltip" title="Visit the Process Monitor home page"
-                class="text-white btn">
-                <!-- Replace with your logo. Just specify height, not width. --><img height="32"
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQAAAADJe6U1AAAABGdBTUEAALGPC/xhBQAAAAJ0Uk5TAAB2k804AAAANUlEQVR42mNgwAX4/x8AkvZgsh5M/geTP8CyH0ggP1BKMoLIH8wfwG54AHbPA7jb+P9jcz0AKpcxBQbNJ8sAAAAASUVORK5CYII="
-                    alt="Logo" /><span style="font-size: 20px;">Process Digital Twin</span>
-            </a><button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
-            <div id="navbarSupportedContent" class="collapse navbar-collapse">
-                <!-- Navbar left -->
-                <ul class="navbar-nav mr-auto pl-5 text-uppercase">
-                </ul><!-- Navbar middle -->
-                <div class="navbar-nav mr-auto"></div><!-- Navbar right -->
-                <div class="navbar-nav pages">
-                    <!-- <a href="#" class="nav-link" data-toggle="tooltip" title="Open on your mobile to alert the operator when quality drops">Mobile</a> --><a
-                        href="operational.html" data-toggle="tooltip"
-                        title="Display on the shop floor monitor for the operator to keep an eye on"
-                        class="nav-link">Operational</a><a href="/prediction" data-toggle="tooltip"
-                        title="For analysts to predict the quality of a batch, without running the tet"
-                        class="nav-link">Prediction</a>
-                    <!-- <a href="#" class="nav-link" data-toggle="tooltip" title="For analysts to explore what can be done to improve process quality">Simulator</a> -->
-                    <!-- <a href="code" class="nav-link" data-toggle="tooltip" title="Explore the Gramex features and learn how to code and build this app">Code</a> -->
-                    <!-- <a href="help" class="nav-link" data-toggle="tooltip" title="Understand how process works, and how to use the application">Help</a> -->
-                    <!-- <a href="admin/" class="nav-link" data-toggle="tooltip" title="Administer the app.">Admin</a> -->
-                    <!-- <a href="logout/" class="nav-link" data-toggle="tooltip" title="Log out of the application.">Logout</a> -->
-                </div>
-            </div>
-        </div>
-    </nav>
-    <digital-twin type="default" required mode="publish" frame-rate="200" frame="0"
-        data-paths="[{&quot;source&quot;:&quot;#block_1&quot;,&quot;from&quot;:&quot;#block_1 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_2 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_2&quot;},{&quot;source&quot;:&quot;#block_2&quot;,&quot;from&quot;:&quot;#block_2 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_3 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_3&quot;},{&quot;source&quot;:&quot;#block_3&quot;,&quot;from&quot;:&quot;#block_3 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_4 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_4&quot;},{&quot;source&quot;:&quot;#block_4&quot;,&quot;from&quot;:&quot;#block_4 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_5 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_5&quot;},{&quot;source&quot;:&quot;#block_5&quot;,&quot;from&quot;:&quot;#block_5 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_6 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_6&quot;},{&quot;source&quot;:&quot;#block_5&quot;,&quot;from&quot;:&quot;#block_5 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_7 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_7&quot;},{&quot;source&quot;:&quot;#block_7&quot;,&quot;from&quot;:&quot;#block_7 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_8 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_8&quot;}]"
-        data="dt-data.json">
-
-        <block-container id="block_1" style="--currX:18; --currY:20; --deltaX:0; --deltaY:0;" class="">
-
-            <span data-pos="e"></span>
-            <span data-pos="w"></span>
-
-            <block-row>
-                <value-block draggable="true" units="" id="block_1_0" data-status="" class="" value="Inlet">
-
-
-
-
-
-
-
-
-                    <h4>Inlet</h4>
-
-                </value-block>
-            </block-row>
-            <block-row>
-                <image-block draggable="true" src="https://static.thenounproject.com/png/3512122-200.png" width="40px"
-                    height="100%" id="block_1_1" data-status="" class="">
-
-
-
-
-
-
-                    <img src="https://static.thenounproject.com/png/3512122-200.png" width="40px" height="100%">
-                </image-block>
-            </block-row>
-            <block-row>
-                <value-block draggable="true" units="Air flow" id="block_1_2" data-status="" class=""
-                    value="@AirFlowActual">
-
-
-
-
-
-
-
-
-
-
-                    <h4>2891.72</h4>
-
-                    <h6>Air flow</h6>
-
-                </value-block>
-            </block-row>
-            <block-row>
-                <value-block draggable="true" units="Relative humidity" id="block_1_3" data-status="" class=""
-                    value="@InletRH">
-
-
-
-
-
-
-
-
-
-
-                    <h4>4.02</h4>
-
-                    <h6>Relative humidity</h6>
-
-                </value-block>
-            </block-row>
-
-        </block-container>
-        <block-container id="block_2" style="--currX:188; --currY:55.5; --deltaX:0; --deltaY:0;" class="">
-
-            <span data-pos="e"></span>
-            <span data-pos="w"></span>
-
-            <block-row>
-                <value-block draggable="true" units="" id="block_2_0" data-status="" class="" value="Dehumidifier">
-
-
-
-
-
-
-
-
-                    <h4>Dehumidifier</h4>
-
-                </value-block>
-            </block-row>
-            <block-row>
-                <image-block draggable="true" src="https://static.thenounproject.com/png/3234931-200.png" width="40px"
-                    height="100%" id="block_2_1" data-status="" class="">
-
-
-
-
-
-
-                    <img src="https://static.thenounproject.com/png/3234931-200.png" width="40px" height="100%">
-                </image-block>
-            </block-row>
-            <block-row>
-                <value-block draggable="true" units="Temperature" id="block_2_2" data-status="" class=""
-                    value="@DehumidificationTemperatureActualvalue">
-
-
-
-
-
-
-
-
-
-
-                    <h4>25.47</h4>
-
-                    <h6>Temperature</h6>
-
-                </value-block>
-            </block-row>
-
-        </block-container>
-        <block-container id="block_3" style="--currX:405; --currY:280; --deltaX:0; --deltaY:0;" class="">
-
-            <span data-pos="e"></span>
-            <span data-pos="w"></span>
-
-            <block-row>
-                <value-block draggable="true" units="" id="block_3_0" data-status="" class="" value="Spray Pump">
-
-
-
-
-
-
-
-
-                    <h4>Spray Pump</h4>
-
-                </value-block>
-            </block-row>
-            <block-row>
-                <image-block draggable="true" src="https://static.thenounproject.com/png/3322108-200.png" width="40px"
-                    height="100%" id="block_3_1" data-status="" class="">
-
-
-
-
-
-
-                    <img src="https://static.thenounproject.com/png/3322108-200.png" width="40px" height="100%">
-                </image-block>
-            </block-row>
-            <block-row>
-                <value-block draggable="true" units="Speed" id="block_3_2" data-status="" class=""
-                    value="@AverageSprayPumpSpeed">
-
-
-
-
-
-
-
-
-
-
-                    <h4>8.80</h4>
-
-                    <h6>Speed</h6>
-
-                </value-block>
-            </block-row>
-
-        </block-container>
-        <block-container id="block_4" style="--currX:580; --currY:280; --deltaX:0; --deltaY:0;" class="">
-
-            <span data-pos="e"></span>
-            <span data-pos="w"></span>
-
-            <block-row>
-                <value-block draggable="true" units="" id="block_4_0" data-status="" class="" value="Atomizer">
-
-
-
-
-
-
-
-
-                    <h4>Atomizer</h4>
-
-                </value-block>
-            </block-row>
-            <block-row>
-                <image-block draggable="true" src="https://static.thenounproject.com/png/3486982-200.png" width="40px"
-                    height="100%" id="block_4_1" data-status="" class="">
-
-
-
-
-
-
-                    <img src="https://static.thenounproject.com/png/3486982-200.png" width="40px" height="100%">
-                </image-block>
-            </block-row>
-            <block-row>
-                <value-block draggable="true" units="Air pressure" id="block_4_2" data-status="" class=""
-                    value="@AtomizationAirPressureActual">
-
-
-
-
-
-
-
-
-
-
-                    <h4>3.74</h4>
-
-                    <h6>Air pressure</h6>
-
-                </value-block>
-            </block-row>
-
-        </block-container>
-        <block-container id="block_5" style="--currX:750; --currY:220; --deltaX:0; --deltaY:0;" class="">
-
-            <span data-pos="e"></span>
-            <span data-pos="w"></span>
-
-            <block-row>
-                <value-block draggable="true" units="" id="block_5_0" data-status="" class="" value="Pan">
-
-
-
-
-
-
-
-
-                    <h4>Pan</h4>
-
-                </value-block>
-            </block-row>
-            <block-row>
-                <image-block draggable="true" src="https://static.thenounproject.com/png/1881685-200.png" width="40px"
-                    height="100%" id="block_5_1" data-status="" class="">
-
-
-
-
-
-
-                    <img src="https://static.thenounproject.com/png/1881685-200.png" width="40px" height="100%">
-                </image-block>
-            </block-row>
-            <block-row>
-                <value-block draggable="true" units="DP" id="block_5_2" data-status="" class="" value="@PanDPActual">
-
-
-
-
-
-
-
-
-
-
-                    <h4>-9.15</h4>
-
-                    <h6>DP</h6>
-
-                </value-block>
-            </block-row>
-            <block-row>
-                <value-block draggable="true" units="Speed" id="block_5_3" data-status="" class=""
-                    value="@PanSpeedActual">
-
-
-
-
-
-
-
-
-
-
-                    <h4>12.00</h4>
-
-                    <h6>Speed</h6>
-
-                </value-block>
-            </block-row>
-
-        </block-container>
-        <block-container id="block_6" style="--currX:900; --currY:10; --deltaX:0; --deltaY:0;" class="">
-
-            <span data-pos="e"></span>
-            <span data-pos="w"></span>
-
-            <block-row>
-                <value-block draggable="true" units="" id="block_6_0" data-status="" class="" value="Exhaust">
-
-
-
-
-
-
-
-
-                    <h4>Exhaust</h4>
-
-                </value-block>
-            </block-row>
-            <block-row>
-                <image-block draggable="true" src="https://static.thenounproject.com/png/4338008-200.png" width="40px"
-                    height="100%" id="block_6_1" data-status="" class="">
-
-
-
-
-
-
-                    <img src="https://static.thenounproject.com/png/4338008-200.png" width="40px" height="100%">
-                </image-block>
-            </block-row>
-            <block-row>
-                <value-block draggable="true" units="Relative humidity" id="block_6_2" data-status="" class=""
-                    value="@ExhaustRHActualvalue">
-
-
-
-
-
-
-
-
-
-
-                    <h4>24.53</h4>
-
-                    <h6>Relative humidity</h6>
-
-                </value-block>
-            </block-row>
-
-        </block-container>
-        <block-container id="block_7" style="--currX:900; --currY:350; --deltaX:0; --deltaY:0;" class="">
-
-            <span data-pos="e"></span>
-            <span data-pos="w"></span>
-
-            <block-row>
-                <value-block draggable="true" units="" id="block_7_0" data-status="" class="" value="Dew point">
-
-
-
-
-
-
-
-
-                    <h4>Dew point</h4>
-
-                </value-block>
-            </block-row>
-            <block-row>
-                <image-block draggable="true" src="https://static.thenounproject.com/png/2360591-200.png" width="40px"
-                    height="100%" id="block_7_1" data-status="" class="">
-
-
-
-
-
-
-                    <img src="https://static.thenounproject.com/png/2360591-200.png" width="40px" height="100%">
-                </image-block>
-            </block-row>
-            <block-row>
-                <value-block draggable="true" units="Temperature" id="block_7_2" data-status="" class=""
-                    value="@DewpointTemperatureActualvalue">
-
-
-
-
-
-
-
-
-
-
-                    <h4>9.40</h4>
-
-                    <h6>Temperature</h6>
-
-                </value-block>
-            </block-row>
-
-        </block-container>
-        <block-container id="block_8" style="--currX:1100; --currY:385.5; --deltaX:0; --deltaY:0;" class="">
-
-            <span data-pos="e"></span>
-            <span data-pos="w"></span>
-
-            <block-row>
-                <value-block draggable="true" units="" id="block_8_0" data-status="" class="" value="Tablet">
-
-
-
-
-
-
-
-
-                    <h4>Tablet</h4>
-
-                </value-block>
-            </block-row>
-            <block-row>
-                <image-block draggable="true" src="https://static.thenounproject.com/png/4342037-200.png" width="40px"
-                    height="100%" id="block_8_1" data-status="" class="">
-
-
-
-
-
-
-                    <img src="https://static.thenounproject.com/png/4342037-200.png" width="40px" height="100%">
-                </image-block>
-            </block-row>
-
-        </block-container>
-
-        <span></span>
-    </digital-twin>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-        }
-
-        #ix41 {
-            background-color: rgb(48, 66, 104) !important;
-        }
-
-        #ih19 {
-            margin-left: 2rem;
-        }
-    </style>
-</body>
-
+<body><nav id="ix41" class="navbar navbar-expand-lg navbar-dark text-white sm1"><div class="container-fluid"><a href="index.html" data-toggle="tooltip" title="Visit the Process Monitor home page" class="text-white btn"><!-- Replace with your logo. Just specify height, not width. --><img height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQAAAADJe6U1AAAABGdBTUEAALGPC/xhBQAAAAJ0Uk5TAAB2k804AAAANUlEQVR42mNgwAX4/x8AkvZgsh5M/geTP8CyH0ggP1BKMoLIH8wfwG54AHbPA7jb+P9jcz0AKpcxBQbNJ8sAAAAASUVORK5CYII=" alt="Logo"/><span id="iq0i">Process Digital Twin</span></a><button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button><div id="navbarSupportedContent" class="collapse navbar-collapse"><!-- Navbar left --><ul class="navbar-nav mr-auto pl-5 text-uppercase">
+                </ul><!-- Navbar middle --><div class="navbar-nav mr-auto"></div><!-- Navbar right --><div class="navbar-nav pages"><!-- <a href="#" class="nav-link" data-toggle="tooltip" title="Open on your mobile to alert the operator when quality drops">Mobile</a> --><a href="operational.html" data-toggle="tooltip" title="Display on the shop floor monitor for the operator to keep an eye on" class="nav-link">Operational</a><a href="/prediction" data-toggle="tooltip" title="For analysts to predict the quality of a batch, without running the tet" class="nav-link">Prediction</a><!-- <a href="#" class="nav-link" data-toggle="tooltip" title="For analysts to explore what can be done to improve process quality">Simulator</a> --><!-- <a href="code" class="nav-link" data-toggle="tooltip" title="Explore the Gramex features and learn how to code and build this app">Code</a> --><!-- <a href="help" class="nav-link" data-toggle="tooltip" title="Understand how process works, and how to use the application">Help</a> --><!-- <a href="admin/" class="nav-link" data-toggle="tooltip" title="Administer the app.">Admin</a> --><!-- <a href="logout/" class="nav-link" data-toggle="tooltip" title="Log out of the application.">Logout</a> --></div></div></div></nav><digital-twin type="default" required mode="publish" frame-rate="200" frame="0" data-paths="[{&quot;source&quot;:&quot;#block_1&quot;,&quot;from&quot;:&quot;#block_1 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_2 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_2&quot;},{&quot;source&quot;:&quot;#block_2&quot;,&quot;from&quot;:&quot;#block_2 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_3 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_3&quot;},{&quot;source&quot;:&quot;#block_3&quot;,&quot;from&quot;:&quot;#block_3 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_4 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_4&quot;},{&quot;source&quot;:&quot;#block_4&quot;,&quot;from&quot;:&quot;#block_4 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_5 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_5&quot;},{&quot;source&quot;:&quot;#block_5&quot;,&quot;from&quot;:&quot;#block_5 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_6 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_6&quot;},{&quot;source&quot;:&quot;#block_5&quot;,&quot;from&quot;:&quot;#block_5 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_7 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_7&quot;},{&quot;source&quot;:&quot;#block_7&quot;,&quot;from&quot;:&quot;#block_7 > span[data-pos=e]&quot;,&quot;to&quot;:&quot;#block_8 > span[data-pos=w]&quot;,&quot;target&quot;:&quot;#block_8&quot;}]" data="dt-data.json">
+    
+  <block-container id="block_1" style="--currX:18; --currY:20; --deltaX:0; --deltaY:0;" class="">
+  
+  <span data-pos="e"></span>
+  <span data-pos="w"></span>
+  
+    <block-row>
+      <value-block draggable="true" units="" id="block_1_0" data-status="" class="" value="Inlet">
+  
+  
+  
+  
+  
+  
+  
+  
+  <h4>Inlet</h4>
+  
+</value-block>
+    </block-row>
+    <block-row>
+      <image-block draggable="true" src="https://static.thenounproject.com/png/3512122-200.png" width="40px" height="100%" id="block_1_1" data-status="" class="">
+  
+  
+  
+  
+  
+  
+  <img src="https://static.thenounproject.com/png/3512122-200.png" width="40px" height="100%">
+</image-block>
+    </block-row>
+    <block-row>
+      <value-block draggable="true" units="Air flow" id="block_1_2" data-status="" class="" value="@AirFlowActual" conditional-class="@AirFlowActual > 2890 ? 'danger' : ''">
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  <h4>2885.19</h4>
+  
+  <h6>Air flow</h6>
+  
+</value-block>
+    </block-row>
+    <block-row>
+      <value-block draggable="true" units="Relative humidity" id="block_1_3" data-status="" class="" value="@InletRH" conditional-class="@InletRH > 4.5 ? 'danger' : ''">
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  <h4>4.36</h4>
+  
+  <h6>Relative humidity</h6>
+  
+</value-block>
+    </block-row>
+  
+<block-row><value-block draggable="true" units="Temperature" id="block_1635596172549_591" data-status="" class="selected" value="@InletTemperatureActual" conditional-class="@InletTemperatureActual < 65 ? 'danger' : ''">
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  <h4>69.71</h4>
+  
+  <h6>Temperature</h6>
+  
+</value-block></block-row></block-container>
+  <block-container id="block_2" style="--currX:188; --currY:55.5; --deltaX:0; --deltaY:0;" class="">
+  
+  <span data-pos="e"></span>
+  <span data-pos="w"></span>
+  
+    <block-row>
+      <value-block draggable="true" units="" id="block_2_0" data-status="" class="" value="Dehumidifier">
+  
+  
+  
+  
+  
+  
+  
+  
+  <h4>Dehumidifier</h4>
+  
+</value-block>
+    </block-row>
+    <block-row>
+      <image-block draggable="true" src="https://static.thenounproject.com/png/3234931-200.png" width="40px" height="100%" id="block_2_1" data-status="" class="">
+  
+  
+  
+  
+  
+  
+  <img src="https://static.thenounproject.com/png/3234931-200.png" width="40px" height="100%">
+</image-block>
+    </block-row>
+    <block-row>
+      <value-block draggable="true" units="Temperature" id="block_2_2" data-status="" class="" value="@DehumidificationTemperatureActualvalue">
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  <h4>25.46</h4>
+  
+  <h6>Temperature</h6>
+  
+</value-block>
+    </block-row>
+  
+</block-container>
+  <block-container id="block_3" style="--currX:405; --currY:280; --deltaX:0; --deltaY:0;" class="">
+  
+  <span data-pos="e"></span>
+  <span data-pos="w"></span>
+  
+    <block-row>
+      <value-block draggable="true" units="" id="block_3_0" data-status="" class="" value="Spray Pump">
+  
+  
+  
+  
+  
+  
+  
+  
+  <h4>Spray Pump</h4>
+  
+</value-block>
+    </block-row>
+    <block-row>
+      <image-block draggable="true" src="https://static.thenounproject.com/png/3322108-200.png" width="40px" height="100%" id="block_3_1" data-status="" class="">
+  
+  
+  
+  
+  
+  
+  <img src="https://static.thenounproject.com/png/3322108-200.png" width="40px" height="100%">
+</image-block>
+    </block-row>
+    <block-row>
+      <value-block draggable="true" units="Speed" id="block_3_2" data-status="" class="" value="@AverageSprayPumpSpeed">
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  <h4>10.77</h4>
+  
+  <h6>Speed</h6>
+  
+</value-block>
+    </block-row>
+  
+</block-container>
+  <block-container id="block_4" style="--currX:580; --currY:280; --deltaX:0; --deltaY:0;" class="">
+  
+  <span data-pos="e"></span>
+  <span data-pos="w"></span>
+  
+    <block-row>
+      <value-block draggable="true" units="" id="block_4_0" data-status="" class="" value="Atomizer">
+  
+  
+  
+  
+  
+  
+  
+  
+  <h4>Atomizer</h4>
+  
+</value-block>
+    </block-row>
+    <block-row>
+      <image-block draggable="true" src="https://static.thenounproject.com/png/3486982-200.png" width="40px" height="100%" id="block_4_1" data-status="" class="">
+  
+  
+  
+  
+  
+  
+  <img src="https://static.thenounproject.com/png/3486982-200.png" width="40px" height="100%">
+</image-block>
+    </block-row>
+    <block-row>
+      <value-block draggable="true" units="Air pressure" id="block_4_2" data-status="" class="" value="@AtomizationAirPressureActual" conditional-class="@AtomizationAirPressureActual < 3.5 ? 'danger' : ''">
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  <h4>3.80</h4>
+  
+  <h6>Air pressure</h6>
+  
+</value-block>
+    </block-row>
+  
+</block-container>
+  <block-container id="block_5" style="--currX:750; --currY:220; --deltaX:0; --deltaY:0;" class="">
+  
+  <span data-pos="e"></span>
+  <span data-pos="w"></span>
+  
+    <block-row>
+      <value-block draggable="true" units="" id="block_5_0" data-status="" class="" value="Pan">
+  
+  
+  
+  
+  
+  
+  
+  
+  <h4>Pan</h4>
+  
+</value-block>
+    </block-row>
+    <block-row>
+      <image-block draggable="true" src="https://static.thenounproject.com/png/1881685-200.png" width="40px" height="100%" id="block_5_1" data-status="" class="">
+  
+  
+  
+  
+  
+  
+  <img src="https://static.thenounproject.com/png/1881685-200.png" width="40px" height="100%">
+</image-block>
+    </block-row>
+    <block-row>
+      <value-block draggable="true" units="DP" id="block_5_2" data-status="" class="" value="@PanDPActual">
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  <h4>-8.90</h4>
+  
+  <h6>DP</h6>
+  
+</value-block>
+    </block-row>
+    <block-row>
+      <value-block draggable="true" units="Speed" id="block_5_3" data-status="" class="" value="@PanSpeedActual">
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  <h4>12.00</h4>
+  
+  <h6>Speed</h6>
+  
+</value-block>
+    </block-row>
+  
+</block-container>
+  <block-container id="block_6" style="--currX:900; --currY:10; --deltaX:0; --deltaY:0;" class="">
+  
+  <span data-pos="e"></span>
+  <span data-pos="w"></span>
+  
+    <block-row>
+      <value-block draggable="true" units="" id="block_6_0" data-status="" class="" value="Exhaust">
+  
+  
+  
+  
+  
+  
+  
+  
+  <h4>Exhaust</h4>
+  
+</value-block>
+    </block-row>
+    <block-row>
+      <image-block draggable="true" src="https://static.thenounproject.com/png/4338008-200.png" width="40px" height="100%" id="block_6_1" data-status="" class="">
+  
+  
+  
+  
+  
+  
+  <img src="https://static.thenounproject.com/png/4338008-200.png" width="40px" height="100%">
+</image-block>
+    </block-row>
+    <block-row>
+      <value-block draggable="true" units="Relative humidity" id="block_6_2" data-status="" class="" value="@ExhaustRHActualvalue">
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  <h4>23.73</h4>
+  
+  <h6>Relative humidity</h6>
+  
+</value-block>
+    </block-row>
+  
+</block-container>
+  <block-container id="block_7" style="--currX:900; --currY:350; --deltaX:0; --deltaY:0;" class="">
+  
+  <span data-pos="e"></span>
+  <span data-pos="w"></span>
+  
+    <block-row>
+      <value-block draggable="true" units="" id="block_7_0" data-status="" class="" value="Dew point">
+  
+  
+  
+  
+  
+  
+  
+  
+  <h4>Dew point</h4>
+  
+</value-block>
+    </block-row>
+    <block-row>
+      <image-block draggable="true" src="https://static.thenounproject.com/png/2360591-200.png" width="40px" height="100%" id="block_7_1" data-status="" class="">
+  
+  
+  
+  
+  
+  
+  <img src="https://static.thenounproject.com/png/2360591-200.png" width="40px" height="100%">
+</image-block>
+    </block-row>
+    <block-row>
+      <value-block draggable="true" units="Temperature" id="block_7_2" data-status="" class="" value="@DewpointTemperatureActualvalue">
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  <h4>10.59</h4>
+  
+  <h6>Temperature</h6>
+  
+</value-block>
+    </block-row>
+  
+</block-container>
+  <block-container id="block_8" style="--currX:1100; --currY:385.5; --deltaX:0; --deltaY:0;" class="">
+  
+  <span data-pos="e"></span>
+  <span data-pos="w"></span>
+  
+    <block-row>
+      <value-block draggable="true" units="" id="block_8_0" data-status="" class="" value="Tablet">
+  
+  
+  
+  
+  
+  
+  
+  
+  <h4>Tablet</h4>
+  
+</value-block>
+    </block-row>
+    <block-row>
+      <image-block draggable="true" src="https://static.thenounproject.com/png/4342037-200.png" width="40px" height="100%" id="block_8_1" data-status="" class="">
+  
+  
+  
+  
+  
+  
+  <img src="https://static.thenounproject.com/png/4342037-200.png" width="40px" height="100%">
+</image-block>
+    </block-row>
+  
+</block-container>
+
+    <span style="opacity: 0.5; transform: translate(0px, 0px) scale(0, 0);"></span>
+  </digital-twin><style>* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#ix41{background-color:rgb(48, 66, 104) !important;}#iq0i{font-size:20px;}</style></body>
 </html>
