@@ -18,19 +18,19 @@ url:
         dropna: true
         exclude: []
         nums:
-        - MainMVKNPV
-        - PnchStiff
-        - PreMVKNPV
-        - TabCylHighMainPV
-        - TabFillDepthPV
-        - Assay
-        - ParSizeASTMesh
-        - PotencyCal
+        - Compressor Roll Force
+        - Punch Stiffness
+        - Pre-compressor Roll Force
+        - Tab Cylinder High (main)
+        - Tab Fill Depth
+        - Magnesium Citrate Quality
+        - Particle Size Retention
+        - Potency Concentration
         path: $YAMLPATH/model.pkl
         target_col: Output
       template: $YAMLPATH/predictor.html
       xsrf_cookies: false
-    pattern: /$YAMLURL/classify
+    pattern: /$YAMLURL/prediction
 import:
   ui:
     path: $GRAMEXAPPS/ui/gramex.yaml

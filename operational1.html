@@ -37,11 +37,11 @@
                 <div class="navbar-nav mr-auto"></div><!-- Navbar right -->
                 <div class="navbar-nav pages">
                     <!-- <a href="#" class="nav-link" data-toggle="tooltip" title="Open on your mobile to alert the operator when quality drops">Mobile</a> --><a
-                        href="monitor.html" data-toggle="tooltip"
+                        href="operational.html" data-toggle="tooltip"
                         title="Display on the shop floor monitor for the operator to keep an eye on"
-                        class="nav-link">Monitor</a><a href="/classify" data-toggle="tooltip"
+                        class="nav-link">Operational</a><a href="/prediction" data-toggle="tooltip"
                         title="For analysts to predict the quality of a batch, without running the tet"
-                        class="nav-link">Predictor</a>
+                        class="nav-link">Prediction</a>
                     <!-- <a href="#" class="nav-link" data-toggle="tooltip" title="For analysts to explore what can be done to improve process quality">Simulator</a> -->
                     <!-- <a href="code" class="nav-link" data-toggle="tooltip" title="Explore the Gramex features and learn how to code and build this app">Code</a> -->
                     <!-- <a href="help" class="nav-link" data-toggle="tooltip" title="Understand how process works, and how to use the application">Help</a> -->
@@ -99,7 +99,7 @@
 
 
 
-                    <h4>2891.72</h4>
+                    <h4>2889.68</h4>
 
                     <h6>Air flow</h6>
 
@@ -118,13 +118,34 @@
 
 
 
-                    <h4>4.02</h4>
+                    <h4>4.41</h4>
 
                     <h6>Relative humidity</h6>
 
                 </value-block>
             </block-row>
 
+            <block-row>
+                <value-block draggable="true" units="Temp" id="block_1635515557482_163" data-status="danger"
+                    class="selected" value="@InletTemperatureActual"
+                    conditional-class="@InletTemperatureActual > 50 ? 'danger' : ''">
+
+
+
+
+
+
+
+
+
+
+                    <h4>69.31</h4>
+
+                    <h6>Temp</h6>
+
+                </value-block>
+            </block-row>
+            <block-row></block-row>
         </block-container>
         <block-container id="block_2" style="--currX:188; --currY:55.5; --deltaX:0; --deltaY:0;" class="">
 
@@ -170,7 +191,7 @@
 
 
 
-                    <h4>25.47</h4>
+                    <h4>25.42</h4>
 
                     <h6>Temperature</h6>
 
@@ -222,7 +243,7 @@
 
 
 
-                    <h4>8.80</h4>
+                    <h4>9.55</h4>
 
                     <h6>Speed</h6>
 
@@ -274,7 +295,7 @@
 
 
 
-                    <h4>3.74</h4>
+                    <h4>3.80</h4>
 
                     <h6>Air pressure</h6>
 
@@ -325,7 +346,7 @@
 
 
 
-                    <h4>-9.15</h4>
+                    <h4>-9.07</h4>
 
                     <h6>DP</h6>
 
@@ -396,7 +417,7 @@
 
 
 
-                    <h4>24.53</h4>
+                    <h4>23.34</h4>
 
                     <h6>Relative humidity</h6>
 
@@ -448,7 +469,7 @@
 
 
 
-                    <h4>9.40</h4>
+                    <h4>10.47</h4>
 
                     <h6>Temperature</h6>
 
@@ -490,7 +511,7 @@
 
         </block-container>
 
-        <span></span>
+        <span style="opacity: 0.5; transform: translate(0px, 0px) scale(0, 0);"></span>
     </digital-twin>
     <style>
         * {
@@ -516,7 +537,7 @@
             background-color: rgb(48, 66, 104) !important;
         }
 
-        #ih19 {
+        #iarn {
             margin-left: 2rem;
         }
     </style>
