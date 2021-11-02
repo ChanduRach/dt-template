@@ -42,6 +42,8 @@
                         class="nav-link">Operational</a><a href="/prediction" data-toggle="tooltip"
                         title="For analysts to predict the quality of a batch, without running the tet"
                         class="nav-link">Prediction</a>
+                        <a href="" class="nav-link dataDB" data-toggle="tooltip" title="influx db data" target="_blank">Data</a>
+
                     <!-- <a href="#" class="nav-link" data-toggle="tooltip" title="For analysts to explore what can be done to improve process quality">Simulator</a> -->
                     <!-- <a href="code" class="nav-link" data-toggle="tooltip" title="Explore the Gramex features and learn how to code and build this app">Code</a> -->
                     <!-- <a href="help" class="nav-link" data-toggle="tooltip" title="Understand how process works, and how to use the application">Help</a> -->
@@ -542,5 +544,7 @@
         }
     </style>
 </body>
-
+<script>
+    $('.dataDB').attr('href',window.location.href.split('.')[0]+".gramex-dev.gramener.co/data?bucket=dt-demo&_limit=10&_format=html")
+  </script>
 </html>

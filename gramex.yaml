@@ -31,6 +31,18 @@ url:
       template: $YAMLPATH/predictor.html
       xsrf_cookies: false
     pattern: /$YAMLURL/prediction
+  99364f2e-3f01-47dc-ae0e-97a7c937b869:
+    handler: FormHandler
+    kwargs:
+      bucket: dt-demo
+      headers: {}
+      id: _time
+      org: Gramener
+      token: 0-RLpb03vP5HfopCmab3hyzKO1T1h8NocYEBr-vZNEQRKGUiu81_WjDZ-LhpmpqwuznfbfwY0MjWB1nvyFULyA==
+      url: influxdb:http://gramex-dev.gramener.com:8086/
+      verify_ssl: 'false'
+      xsrf_cookies: 'false'
+    pattern: /$YAMLURL/data
 import:
   ui:
     path: $GRAMEXAPPS/ui/gramex.yaml

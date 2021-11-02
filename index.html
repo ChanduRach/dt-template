@@ -41,6 +41,7 @@
           <!-- <a href="#" class="nav-link" data-toggle="tooltip" title="Open on your mobile to alert the operator when quality drops">Mobile</a> -->
           <a href="operational.html" class="nav-link" data-toggle="tooltip" title="Display on the shop floor monitor for the operator to keep an eye on">Operational</a>
           <a href="/prediction" class="nav-link" data-toggle="tooltip" title="For analysts to predict the quality of a batch, without running the tet">Prediction</a>
+          <a href="" class="nav-link dataDB" data-toggle="tooltip" title="influx db data" target="_blank">Data</a>
           <!-- <a href="#" class="nav-link" data-toggle="tooltip" title="For analysts to explore what can be done to improve process quality">Simulator</a> -->
 
           <!-- <a href="code" class="nav-link" data-toggle="tooltip" title="Explore the Gramex features and learn how to code and build this app">Code</a> -->
@@ -108,5 +109,7 @@
 <script src="ui/numeral/min/numeral.min.js"></script>
 <script src="ui/g1/dist/g1.min.js"></script>
 </body>
-
+  <script>
+    $('.dataDB').attr('href',window.location.href.split('.')[0]+".gramex-dev.gramener.co/data?bucket=dt-demo&_limit=10&_format=html")
+  </script>
 </html>
